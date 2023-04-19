@@ -1,0 +1,22 @@
+
+
+
+    /* Style the iframe container */
+    .iframe-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    /* Style the iframe */
+    .iframe-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      border: none;
+    }
+
+.bdycolor {
+  background-color: #352451; 
+  }
