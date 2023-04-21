@@ -32,5 +32,47 @@ background-color:#352451;
     <!-- Set the source of the iframe and add any additional attributes as needed -->
     <iframe src="https://script.google.com/macros/s/AKfycbzY6KiXg8jFEW3JyTkfaacw55EDvpM9kBLtuE7dZYYVahfwGfteg8QR4jw4Udo57rYi/exec" frameborder="0" scrolling="no"></iframe>
   </div>
+
+  <script>
+    // Set the inactivity time limit in milliseconds (2 hours = 7200000 ms)
+    const inactivityTimeLimit = 7200000;
+    
+    // Set the key for the timestamp in local storage
+    const timestampKey = "lastActivityTimestamp";
+    
+    // Define a function to refresh the page
+    function refreshPage() {
+  // Display a message to the user
+  alert("You have been logged out due to inactivity.");
+
+  // Reload the page
+  location.reload();
+}
+    
+    // Define a function to check the inactivity timer
+    function checkInactivityTimer() {
+      // Get the timestamp of the last activity from local storage
+      const lastActivityTimestamp = localStorage.getItem(timestampKey);
+    
+      // If the timestamp is more than 2 hours old, refresh the page
+      if (lastActivityTimestamp && Date.now() - lastActivityTimestamp > inactivityTimeLimit) {
+        refreshPage();
+      }
+    }
+    
+    // Add event listeners for user activity
+    document.addEventListener("mousemove", function() {
+      localStorage.setItem(timestampKey, Date.now());
+    });
+    document.addEventListener("keypress", function() {
+      localStorage.setItem(timestampKey, Date.now());
+    });
+    
+    // Check the inactivity timer periodically (every 1 minute in this example)
+    setInterval(checkInactivityTimer, 60000); // 60000 ms = 1 minute
+    
+    </script>
+
+
 </body>
 </html>
